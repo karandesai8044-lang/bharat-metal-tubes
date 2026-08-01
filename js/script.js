@@ -1,0 +1,376 @@
+// Bharat Metal & Tubes — main script
+var BMT_WA    = '919300002940';                 // business WhatsApp
+var BMT_EMAIL = 'bharatmetal2013@gmail.com';    // business email
+
+// ---------------------------------------------------------------------------
+// WEB3FORMS — makes the enquiry form land straight in the inbox, no server.
+//
+// TO ACTIVATE (one time, ~1 minute, free, no account needed):
+//   1. Go to  https://web3forms.com
+//   2. Enter  bharatmetal2013@gmail.com  and press "Create Access Key"
+//   3. That inbox gets an email containing the access key — copy it
+//   4. Paste it below, replacing PASTE-ACCESS-KEY-HERE
+//
+// Until a real key is pasted here the form still works: it falls back to the
+// "choose WhatsApp / Gmail / mail app / copy" screen. Nothing breaks.
+// ---------------------------------------------------------------------------
+var BMT_FORM_KEY = 'PASTE-ACCESS-KEY-HERE';
+
+function bmtFormKeyReady() {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(BMT_FORM_KEY);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  /* ============ MOBILE DRAWER ============ */
+  var toggle  = document.querySelector('.menu-toggle');
+  var links   = document.querySelector('.nav-links');
+  var overlay = document.querySelector('.nav-overlay');
+  var dClose  = document.querySelector('.drawer-close');
+
+  function openNav() {
+    links.classList.add('open');
+    toggle.classList.add('active');
+    toggle.setAttribute('aria-expanded', 'true');
+    if (overlay) overlay.classList.add('show');
+    document.body.classList.add('nav-lock');
+  }
+  function closeNav() {
+    links.classList.remove('open');
+    toggle.classList.remove('active');
+    toggle.setAttribute('aria-expanded', 'false');
+    if (overlay) overlay.classList.remove('show');
+    document.body.classList.remove('nav-lock');
+  }
+
+  if (toggle && links) {
+    toggle.addEventListener('click', function () {
+      links.classList.contains('open') ? closeNav() : openNav();
+    });
+    links.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeNav); });
+    if (overlay) overlay.addEventListener('click', closeNav);
+    if (dClose)  dClose.addEventListener('click', closeNav);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNav(); });
+  }
+
+  /* ============ NAVBAR SHADOW ============ */
+  var nav = document.querySelector('.navbar');
+  window.addEventListener('scroll', function () {
+    if (nav) nav.style.boxShadow = window.scrollY > 20 ? '0 6px 20px rgba(0,0,0,0.25)' : 'none';
+  });
+
+  /* ============ REVEAL + COUNTERS ============ */
+  document.querySelectorAll('.grid, .pd-grid, .footer-grid, .gallery-grid, .hero-stats, .stats-grid')
+    .forEach(function (group) {
+      group.querySelectorAll(':scope > .reveal').forEach(function (el, i) {
+        el.style.setProperty('--stagger-delay', Math.min(i * 90, 540) + 'ms');
+      });
+    });
+
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+
+  var counterObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var target = parseInt(el.getAttribute('data-count'), 10);
+      var suffix = el.getAttribute('data-suffix') || '';
+      var count = 0, step = Math.max(target / 60, 1);
+      (function update() {
+        count += step;
+        if (count >= target) { el.textContent = target + suffix; }
+        else { el.textContent = Math.floor(count) + suffix; requestAnimationFrame(update); }
+      })();
+      counterObs.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('[data-count]').forEach(function (c) { counterObs.observe(c); });
+
+  /* ============ ENQUIRY → CHOOSE WHATSAPP OR EMAIL ============ */
+  var modal = document.getElementById('sendModal');
+
+  function val(form, sel) {
+    var el = form.querySelector(sel);
+    return el && el.value ? el.value.trim() : '';
+  }
+
+  // Builds the message body. `bold` wraps labels in * * for WhatsApp.
+  function buildMessage(d, bold) {
+    var B = bold ? '*' : '';
+    var L = [];
+    L.push(B + 'NEW ENQUIRY — BHARAT METAL & TUBES' + B);
+    L.push('');
+    if (d.name)     L.push(B + 'Name:' + B + ' ' + d.name);
+    if (d.phone)    L.push(B + 'Phone:' + B + ' ' + d.phone);
+    if (d.email)    L.push(B + 'Email:' + B + ' ' + d.email);
+    if (d.material) L.push(B + 'Material Required:' + B + ' ' + d.material);
+    if (d.qty)      L.push(B + 'Quantity:' + B + ' ' + d.qty);
+    if (d.msg) {
+      L.push('');
+      L.push(B + 'Message:' + B);
+      L.push(d.msg);
+    }
+    L.push('');
+    L.push('—');
+    L.push('Sent from the Bharat Metal & Tubes website');
+    return L.join('\n');
+  }
+
+  function subjectFor(d) {
+    return 'Enquiry' + (d.material ? ' — ' + d.material : '') + (d.name ? ' — ' + d.name : '');
+  }
+  // Gmail web compose — works in any browser with NO mail app installed.
+  function gmailUrl(d) {
+    return 'https://mail.google.com/mail/?view=cm&fs=1' +
+           '&to=' + encodeURIComponent(BMT_EMAIL) +
+           '&su=' + encodeURIComponent(subjectFor(d)) +
+           '&body=' + encodeURIComponent(buildMessage(d, false));
+  }
+  // mailto: — only works if the device has a default mail app configured.
+  function mailtoUrl(d) {
+    return 'mailto:' + BMT_EMAIL +
+           '?subject=' + encodeURIComponent(subjectFor(d)) +
+           '&body='    + encodeURIComponent(buildMessage(d, false));
+  }
+
+  function copyText(txt, btn) {
+    function done() {
+      if (!btn) return;
+      var el = btn.querySelector('b'), old = el.textContent;
+      el.textContent = 'Copied ✓';
+      setTimeout(function () { el.textContent = old; }, 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(done, function () { legacy(); });
+    } else { legacy(); }
+    function legacy() {
+      var ta = document.createElement('textarea');
+      ta.value = txt;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+  }
+
+  // state: null = let the user choose, true = already emailed, false = send failed
+  function openModal(d, state) {
+    if (!modal) { // fallback: straight to WhatsApp
+      window.open('https://wa.me/' + BMT_WA + '?text=' + encodeURIComponent(buildMessage(d, true)), '_blank');
+      return;
+    }
+    var waBtn    = modal.querySelector('[data-send="whatsapp"]');
+    var gmailBtn = modal.querySelector('[data-send="gmail"]');
+    var mailBtn  = modal.querySelector('[data-send="email"]');
+    var copyBtn  = modal.querySelector('[data-send="copy"]');
+    var h3       = modal.querySelector('.send-head h3');
+    var sub      = modal.querySelector('.send-head p');
+    var note     = modal.querySelector('.send-note');
+
+    // reset to the default "choose" look every time
+    [gmailBtn, mailBtn, copyBtn].forEach(function (b) { if (b) b.hidden = false; });
+    if (waBtn) waBtn.querySelector('b').textContent = 'Send on WhatsApp';
+    modal.classList.remove('is-sent');
+
+    if (state === true) {
+      modal.classList.add('is-sent');
+      h3.textContent  = 'Enquiry sent ✓';
+      sub.textContent = 'Thank you — your enquiry has reached Bharat Metal & Tubes by email. We usually reply within a few working hours.';
+      if (note) note.innerHTML = 'Want it even faster? Send the same details on WhatsApp too.';
+      [gmailBtn, mailBtn].forEach(function (b) { if (b) b.hidden = true; });
+      if (waBtn) waBtn.querySelector('b').textContent = 'Also send on WhatsApp';
+    } else if (state === false) {
+      h3.textContent  = 'Couldn’t send automatically';
+      sub.textContent = 'The connection failed. Please send it directly using one of these — everything is already written out for you.';
+      if (note) note.innerHTML = 'Nothing is sent automatically &mdash; you always press send yourself.';
+    } else {
+      h3.textContent  = 'Almost done';
+      sub.textContent = 'Your enquiry is ready and already written out. Just pick how you’d like to send it.';
+      if (note) note.innerHTML = 'Nothing is sent automatically &mdash; you always press send yourself.<br>We usually reply within a few working hours.';
+    }
+
+    waBtn.onclick = function () {
+      window.open('https://wa.me/' + BMT_WA + '?text=' + encodeURIComponent(buildMessage(d, true)), '_blank');
+      hideModal();
+    };
+    if (gmailBtn) gmailBtn.onclick = function () {
+      window.open(gmailUrl(d), '_blank', 'noopener');
+      hideModal();
+    };
+    if (mailBtn) mailBtn.onclick = function () {
+      window.location.href = mailtoUrl(d);
+    };
+    if (copyBtn) copyBtn.onclick = function () {
+      copyText(buildMessage(d, false) + '\n\nTo: ' + BMT_EMAIL, copyBtn);
+    };
+    modal.classList.add('show');
+    document.body.classList.add('nav-lock');
+  }
+  function hideModal() {
+    if (!modal) return;
+    modal.classList.remove('show');
+    document.body.classList.remove('nav-lock');
+  }
+  if (modal) {
+    modal.querySelector('.send-close').addEventListener('click', hideModal);
+    modal.addEventListener('click', function (e) { if (e.target === modal) hideModal(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('show')) hideModal();
+    });
+  }
+
+  document.querySelectorAll('form[data-inquiry]').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var texts = form.querySelectorAll('input[type="text"]');
+      var d = {
+        name:     texts[0] ? texts[0].value.trim() : '',
+        qty:      texts[1] ? texts[1].value.trim() : '',
+        phone:    val(form, 'input[type="tel"]'),
+        email:    val(form, 'input[type="email"]'),
+        material: val(form, 'select'),
+        msg:      val(form, 'textarea')
+      };
+
+      // No access key configured yet → let the visitor pick a channel.
+      if (!bmtFormKeyReady()) { openModal(d, null); return; }
+
+      var btn  = form.querySelector('button[type="submit"]');
+      var orig = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      var payload = {
+        access_key: BMT_FORM_KEY,
+        subject:    subjectFor(d),
+        from_name:  'Bharat Metal & Tubes — Website Enquiry',
+        name:       d.name,
+        phone:      d.phone,
+        material:   d.material,
+        quantity:   d.qty,
+        message:    buildMessage(d, false)
+      };
+      if (d.email) payload.email = d.email;   // becomes the reply-to address
+
+      fetch('https://api.web3forms.com/submit', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body:    JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (j) {
+          if (btn) { btn.disabled = false; btn.textContent = orig; }
+          if (j && j.success) { form.reset(); openModal(d, true); }
+          else { openModal(d, false); }
+        })
+        .catch(function () {
+          if (btn) { btn.disabled = false; btn.textContent = orig; }
+          openModal(d, false);
+        });
+    });
+  });
+
+  /* ============ PREFILLED DIRECT CONTACT LINKS ============ */
+  var quickMail = [
+    'Dear Bharat Metal & Tubes,', '',
+    'I would like to enquire about the following material:', '',
+    'Material  : ', 'Grade     : ', 'Size / Spec: ', 'Quantity  : ', 'Delivery to: ', '',
+    'Please share your best rate and availability.', '',
+    'Name  : ', 'Phone : '
+  ].join('\n');
+
+  // Gmail web compose so it works even with no mail app installed.
+  document.querySelectorAll('[data-quick="email"]').forEach(function (a) {
+    a.setAttribute('href', 'https://mail.google.com/mail/?view=cm&fs=1' +
+      '&to=' + encodeURIComponent(BMT_EMAIL) +
+      '&su=' + encodeURIComponent('Material Enquiry — Bharat Metal & Tubes') +
+      '&body=' + encodeURIComponent(quickMail));
+    a.setAttribute('target', '_blank');
+    a.setAttribute('rel', 'noopener');
+  });
+
+  // Plain mailto for anyone who prefers their own mail app.
+  document.querySelectorAll('[data-quick="mailto"]').forEach(function (a) {
+    a.setAttribute('href', 'mailto:' + BMT_EMAIL +
+      '?subject=' + encodeURIComponent('Material Enquiry — Bharat Metal & Tubes') +
+      '&body='    + encodeURIComponent(quickMail));
+  });
+
+  var quickWA = [
+    'Hello Bharat Metal & Tubes,', '',
+    'I would like a quote for:', '',
+    'Material: ', 'Grade: ', 'Size: ', 'Quantity: ', '',
+    'Please share your best rate. Thank you.'
+  ].join('\n');
+
+  document.querySelectorAll('[data-quick="whatsapp"]').forEach(function (a) {
+    a.setAttribute('href', 'https://wa.me/' + BMT_WA + '?text=' + encodeURIComponent(quickWA));
+  });
+
+  /* ============ WEIGHT CALCULATOR ============ */
+  var calc = document.getElementById('wcalc');
+  if (calc) {
+    var shape   = document.getElementById('wc-shape');
+    var rows    = document.getElementById('wc-rows');
+    var out     = document.getElementById('wc-out');
+    var outUnit = document.getElementById('wc-unit');
+
+    var SHAPES = {
+      'ss-pipe':   { unit:'kg / metre', fields:[['Outer Dia (OD) mm','od','e.g. 60.3'],['Wall Thickness mm','wt','e.g. 3.9']],
+                     calc:function(v){ return (v.od - v.wt) * v.wt * 0.02466; } },
+      'ss-round':  { unit:'kg / metre', fields:[['Diameter mm','dia','e.g. 25']],
+                     calc:function(v){ return v.dia * v.dia * 0.00623; } },
+      'ss-square': { unit:'kg / metre', fields:[['Side mm','dia','e.g. 20']],
+                     calc:function(v){ return v.dia * v.dia * 0.00787; } },
+      'ss-hex':    { unit:'kg / metre', fields:[['A/F (across flats) mm','dia','e.g. 24']],
+                     calc:function(v){ return v.dia * v.dia * 0.0068; } },
+      'ss-flat':   { unit:'kg / metre', fields:[['Width mm','w','e.g. 40'],['Thickness mm','t','e.g. 6']],
+                     calc:function(v){ return v.w * v.t * 0.00798; } },
+      'ss-sheet':  { unit:'kg / sheet', fields:[['Length m','l','e.g. 2.5'],['Width m','w','e.g. 1.25'],['Thickness mm','t','e.g. 3']],
+                     calc:function(v){ return v.l * v.w * v.t * 8; } },
+      'ss-circle': { unit:'kg / piece', fields:[['Diameter mm','dia','e.g. 300'],['Thickness mm','t','e.g. 5']],
+                     calc:function(v){ return (v.dia * v.dia * v.t) / 160000; } },
+      'cs-sheet':  { unit:'kg / sheet', fields:[['Length m','l','e.g. 2.5'],['Width m','w','e.g. 1.25'],['Thickness mm','t','e.g. 5']],
+                     calc:function(v){ return v.l * v.w * v.t * 7.85; } },
+      'brass':     { unit:'kg / metre', fields:[['OD mm','od','e.g. 40'],['Wall Thickness mm','wt','e.g. 3']],
+                     calc:function(v){ return (v.od - v.wt) * v.wt * 0.026; } },
+      'alu-pipe':  { unit:'kg / metre', fields:[['OD mm','od','e.g. 40'],['Wall Thickness mm','wt','e.g. 3']],
+                     calc:function(v){ return (v.od - v.wt) * v.wt * 0.0082; } },
+      'alu-sheet': { unit:'kg / sheet', fields:[['Length m','l','e.g. 2.5'],['Width m','w','e.g. 1.25'],['Thickness mm','t','e.g. 3']],
+                     calc:function(v){ return v.l * v.w * v.t * 2.69; } }
+    };
+
+    function compute() {
+      var s = SHAPES[shape.value], v = {}, ok = true;
+      rows.querySelectorAll('input').forEach(function (i) {
+        var n = parseFloat(i.value);
+        v[i.getAttribute('data-k')] = isNaN(n) ? 0 : n;
+        if (isNaN(n)) ok = false;
+      });
+      var res = s.calc(v);
+      out.textContent = (ok && isFinite(res) && res > 0) ? res.toFixed(2) : '0.00';
+    }
+    function buildFields() {
+      var s = SHAPES[shape.value];
+      rows.innerHTML = '';
+      s.fields.forEach(function (f) {
+        var wrap = document.createElement('div');
+        wrap.className = 'calc-field';
+        wrap.innerHTML = '<label>' + f[0] + '</label><input type="number" step="any" data-k="' + f[1] + '" placeholder="' + f[2] + '">';
+        rows.appendChild(wrap);
+      });
+      outUnit.textContent = s.unit;
+      out.textContent = '0.00';
+      rows.querySelectorAll('input').forEach(function (i) { i.addEventListener('input', compute); });
+    }
+    shape.addEventListener('change', buildFields);
+    buildFields();
+  }
+
+
+});
