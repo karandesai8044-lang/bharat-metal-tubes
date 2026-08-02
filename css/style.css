@@ -182,10 +182,23 @@ body.nav-lock{overflow:hidden;}
 /* ============ HERO / PAGE HEADER ============ */
 .hero{
   position:relative;min-height:100vh;display:flex;align-items:center;
-  background:linear-gradient(120deg,rgba(9,10,12,0.92),rgba(14,16,19,0.72)),url('../images/shope5.jpg') center/cover no-repeat;
+  overflow:hidden;
   padding-top:110px;
 }
-.hero-content{max-width:800px;}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:url('../images/shope5.jpg') center/cover no-repeat;
+  animation:heroZoom 22s ease-in-out infinite alternate;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(120deg,rgba(9,10,12,0.92),rgba(14,16,19,0.72));
+}
+@keyframes heroZoom{
+  from{transform:scale(1);}
+  to{transform:scale(1.12);}
+}
+.hero-content{position:relative;z-index:2;max-width:800px;}
 .hero-content .eyebrow{color:var(--orange);margin-bottom:18px;}
 .hero h1{color:var(--white);font-size:54px;line-height:1.12;margin-bottom:22px;}
 .hero h1 span{color:var(--orange);}
@@ -203,6 +216,19 @@ body.nav-lock{overflow:hidden;}
 .hero-stats div:last-child{border-right:none;}
 .hero-stats div b{display:block;font-family:'Oswald',sans-serif;font-size:30px;color:var(--orange);}
 .hero-stats div span{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--steel-light);}
+
+/* staggered entrance for the hero text/CTA/stats */
+@keyframes heroFadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.hero-content > .eyebrow{opacity:0;animation:heroFadeUp .8s ease forwards;animation-delay:.1s;}
+.hero-content > h1{opacity:0;animation:heroFadeUp .8s ease forwards;animation-delay:.25s;}
+.hero-content > p{opacity:0;animation:heroFadeUp .8s ease forwards;animation-delay:.4s;}
+.hero-content > .hero-btns{opacity:0;animation:heroFadeUp .8s ease forwards;animation-delay:.55s;}
+.hero-content > .hero-stats{opacity:0;animation:heroFadeUp .8s ease forwards;animation-delay:.7s;}
+
+@media (prefers-reduced-motion: reduce){
+  .hero::before{animation:none;}
+  .hero-content > *{animation:none !important;opacity:1;transform:none;}
+}
 
 .page-header{
   position:relative;padding:180px 0 80px;
