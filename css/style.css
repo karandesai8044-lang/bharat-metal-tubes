@@ -232,7 +232,7 @@ body.nav-lock{overflow:hidden;}
 
 .page-header{
   position:relative;padding:180px 0 80px;
-  background:linear-gradient(120deg,rgba(11,12,14,0.86),rgba(20,22,26,0.55)),url('../images/shope5.jpg') center/cover no-repeat;
+  background:linear-gradient(120deg,rgba(11,12,14,0.86),rgba(20,22,26,0.55)),url('../images/shope5new.jpg') center/cover no-repeat;
   color:var(--white);
 }
 .page-header .eyebrow{margin-bottom:14px;}
