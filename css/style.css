@@ -182,7 +182,7 @@ body.nav-lock{overflow:hidden;}
 /* ============ HERO / PAGE HEADER ============ */
 .hero{
   position:relative;min-height:100vh;display:flex;align-items:center;
-  background:linear-gradient(120deg,rgba(11,12,14,0.86),rgba(20,22,26,0.6)),url('../images/shope4.jpg') center/cover no-repeat;
+  background:linear-gradient(120deg,rgba(9,10,12,0.92),rgba(14,16,19,0.72)),url('../images/shope5.jpg') center/cover no-repeat;
   padding-top:110px;
 }
 .hero-content{max-width:800px;}
@@ -191,7 +191,16 @@ body.nav-lock{overflow:hidden;}
 .hero h1 span{color:var(--orange);}
 .hero p{color:var(--fog);font-size:17px;max-width:600px;margin-bottom:34px;}
 .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
-.hero-stats{display:flex;gap:40px;margin-top:60px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,0.15);padding-top:30px;}
+.hero-stats{
+  display:flex;flex-wrap:wrap;margin-top:56px;
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.14);
+  border-radius:8px;padding:26px 8px;
+  box-shadow:0 24px 60px rgba(0,0,0,0.4);
+}
+.hero-stats div{flex:1;min-width:120px;padding:0 26px;border-right:1px solid rgba(255,255,255,.12);}
+.hero-stats div:last-child{border-right:none;}
 .hero-stats div b{display:block;font-family:'Oswald',sans-serif;font-size:30px;color:var(--orange);}
 .hero-stats div span{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--steel-light);}
 
@@ -681,9 +690,10 @@ body.nav-lock .float-whatsapp{opacity:0;pointer-events:none;}
 
   /* badge stats -> clean 2x2 grid */
   .hero-stats{
-    display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;
-    margin-top:32px;padding-top:22px;
+    display:grid;grid-template-columns:1fr 1fr;gap:20px 8px;
+    margin-top:32px;padding:22px 18px;
   }
+  .hero-stats div{border-right:none;padding:0;}
   .hero-stats div b{font-size:23px;}
   .hero-stats div span{font-size:11px;letter-spacing:.8px;}
 
@@ -708,9 +718,10 @@ body.nav-lock .float-whatsapp{opacity:0;pointer-events:none;}
   .hero-btns{flex-direction:column;gap:10px;}
   .hero-btns .btn{width:100%;justify-content:center;}
   .hero-stats{
-    display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;
-    margin-top:32px;padding-top:22px;
+    display:grid;grid-template-columns:1fr 1fr;gap:20px 8px;
+    margin-top:32px;padding:22px 18px;
   }
+  .hero-stats div{border-right:none;padding:0;}
   .hero-stats div b{font-size:23px;}
 }
 
