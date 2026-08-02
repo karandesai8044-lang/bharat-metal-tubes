@@ -561,6 +561,16 @@ textarea{resize:vertical;min-height:110px;}
 .send-modal.is-sent .send-close{border-color:rgba(255,255,255,.35);}
 .send-modal.is-sent .send-close:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5);}
 
+/* --- enquiry-sent toast: quick auto-dismiss confirmation --- */
+.enq-toast{position:fixed;left:50%;bottom:28px;z-index:4000;transform:translate(-50%,16px);
+  display:flex;align-items:center;gap:10px;background:#12692f;color:#fff;
+  padding:14px 22px;border-radius:6px;box-shadow:var(--shadow-lg);
+  font-size:14.5px;font-weight:500;letter-spacing:.2px;
+  opacity:0;visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility .25s;
+  max-width:90vw;}
+.enq-toast.show{opacity:1;visibility:visible;transform:translate(-50%,0);}
+.enq-toast svg{flex:none;width:18px;height:18px;}
+
 /* ===========================================================
    INDUSTRY + FEATURE CARDS — light-safe + SVG icons
    (base .industry-card was dark-only; on section-fog the white

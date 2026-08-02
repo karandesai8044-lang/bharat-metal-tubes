@@ -156,6 +156,22 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  /* ============ ENQUIRY SENT — small auto-dismiss toast ============ */
+  var toastTimer = null;
+  function showToast(msg) {
+    var toast = document.querySelector('.enq-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'enq-toast';
+      toast.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span></span>';
+      document.body.appendChild(toast);
+    }
+    toast.querySelector('span').textContent = msg;
+    toast.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2800);
+  }
+
   // state: null = let the user choose, true = already emailed, false = send failed
   function openModal(d, state) {
     if (!modal) { // fallback: straight to WhatsApp
@@ -260,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function (r) { return r.json(); })
         .then(function (j) {
           if (btn) { btn.disabled = false; btn.textContent = orig; }
-          if (j && (j.success === true || j.success === 'true')) { form.reset(); openModal(d, true); }
+          if (j && (j.success === true || j.success === 'true')) { form.reset(); showToast('Enquiry sent — we\'ll reply within a few working hours.'); }
           else { openModal(d, false); }
         })
         .catch(function () {
