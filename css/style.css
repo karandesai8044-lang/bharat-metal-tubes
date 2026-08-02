@@ -187,7 +187,7 @@ body.nav-lock{overflow:hidden;}
 }
 .hero::before{
   content:"";position:absolute;inset:0;z-index:0;
-  background:url('../images/shope5.jpg') center/cover no-repeat;
+  background:url('../images/shope5new.jpg') center/cover no-repeat;
   animation:heroZoom 22s ease-in-out infinite alternate;
 }
 .hero::after{
