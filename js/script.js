@@ -240,6 +240,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var BMT_MAX_FILE = 5 * 1024 * 1024; // FormSubmit free-tier attachment limit
 
+  // FormSubmit's /ajax/ endpoint (used below) silently drops file uploads —
+  // attachments only work through a real multipart form POST. So when a file
+  // is attached we submit the form natively into this hidden iframe (no page
+  // reload) instead of using fetch.
+  var uploadFrame = null;
+  function getUploadFrame() {
+    if (uploadFrame) return uploadFrame;
+    uploadFrame = document.createElement('iframe');
+    uploadFrame.name = 'bmt-upload-frame';
+    uploadFrame.style.display = 'none';
+    uploadFrame.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(uploadFrame);
+    return uploadFrame;
+  }
+
   document.querySelectorAll('form[data-inquiry]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -264,7 +279,35 @@ document.addEventListener('DOMContentLoaded', function () {
       var orig = btn ? btn.textContent : '';
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
-      // FormSubmit: emails the enquiry (with optional attachment) to BMT_FORM_EMAIL. No key, no server.
+      var subjectField = form.querySelector('[name="_subject"]');
+      if (subjectField) subjectField.value = subjectFor(d);
+
+      if (file) {
+        // Real multipart POST via hidden iframe — the only way FormSubmit delivers attachments.
+        var frame  = getUploadFrame();
+        var done   = false;
+        var finish = function () {
+          if (done) return;
+          done = true;
+          frame.removeEventListener('load', onLoad);
+          clearTimeout(timer);
+          if (btn) { btn.disabled = false; btn.textContent = orig; }
+          form.reset();
+          showToast('Enquiry sent — we\'ll reply within a few working hours.');
+        };
+        var onLoad = function () { finish(); };
+        frame.addEventListener('load', onLoad);
+        var timer = setTimeout(finish, 15000); // fallback in case the load event never fires
+
+        form.action  = 'https://formsubmit.co/' + encodeURIComponent(BMT_FORM_EMAIL);
+        form.method  = 'POST';
+        form.enctype = 'multipart/form-data';
+        form.target  = 'bmt-upload-frame';
+        form.submit();
+        return;
+      }
+
+      // FormSubmit AJAX: instant success/failure feedback, text-only enquiries.
       var payload = new FormData();
       payload.append('_subject',  subjectFor(d));
       payload.append('_template', 'table');
@@ -275,7 +318,6 @@ document.addEventListener('DOMContentLoaded', function () {
       payload.append('Material',  d.material);
       payload.append('Quantity',  d.qty);
       payload.append('Message',   d.msg);
-      if (file) payload.append('Attachment', file, file.name);
 
       fetch('https://formsubmit.co/ajax/' + encodeURIComponent(BMT_FORM_EMAIL), {
         method:  'POST',
