@@ -3,22 +3,19 @@ var BMT_WA    = '919300002940';                 // business WhatsApp
 var BMT_EMAIL = 'bharatmetal2013@gmail.com';    // business email
 
 // ---------------------------------------------------------------------------
-// WEB3FORMS — makes the enquiry form land straight in the inbox, no server.
+// EMAIL DELIVERY — enquiries are emailed via FormSubmit (no server, no key).
 //
-// TO ACTIVATE (one time, ~1 minute, free, no account needed):
-//   1. Go to  https://web3forms.com
-//   2. Enter  bharatmetal2013@gmail.com  and press "Create Access Key"
-//   3. That inbox gets an email containing the access key — copy it
-//   4. Paste it below, replacing PASTE-ACCESS-KEY-HERE
+// Change BMT_FORM_EMAIL to switch where enquiries land:
+//   • For now it goes to K-Tech Solutions (testing).
+//   • Later swap it to the client's inbox (bharatmetal2013@gmail.com) and
+//     push — that single line is the only change needed.
 //
-// Until a real key is pasted here the form still works: it falls back to the
-// "choose WhatsApp / Gmail / mail app / copy" screen. Nothing breaks.
+// FIRST-TIME ACTIVATION (one click, once per email address):
+//   The very first enquiry triggers a "Confirm your email" mail from
+//   FormSubmit to the address below. Open it and click "Activate" once —
+//   after that every enquiry is delivered automatically.
 // ---------------------------------------------------------------------------
-var BMT_FORM_KEY = 'PASTE-ACCESS-KEY-HERE';
-
-function bmtFormKeyReady() {
-  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(BMT_FORM_KEY);
-}
+var BMT_FORM_EMAIL = 'ktechsolutions.in@gmail.com';   // TODO: swap to client's inbox for production
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -238,26 +235,24 @@ document.addEventListener('DOMContentLoaded', function () {
         msg:      val(form, 'textarea')
       };
 
-      // No access key configured yet → let the visitor pick a channel.
-      if (!bmtFormKeyReady()) { openModal(d, null); return; }
-
       var btn  = form.querySelector('button[type="submit"]');
       var orig = btn ? btn.textContent : '';
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
+      // FormSubmit: emails the enquiry to BMT_FORM_EMAIL. No key, no server.
       var payload = {
-        access_key: BMT_FORM_KEY,
-        subject:    subjectFor(d),
-        from_name:  'Bharat Metal & Tubes — Website Enquiry',
-        name:       d.name,
-        phone:      d.phone,
-        material:   d.material,
-        quantity:   d.qty,
-        message:    buildMessage(d, false)
+        _subject:  subjectFor(d),
+        _template: 'table',
+        _captcha:  'false',
+        Name:      d.name,
+        Phone:     d.phone,
+        Email:     d.email,
+        Material:  d.material,
+        Quantity:  d.qty,
+        Message:   d.msg
       };
-      if (d.email) payload.email = d.email;   // becomes the reply-to address
 
-      fetch('https://api.web3forms.com/submit', {
+      fetch('https://formsubmit.co/ajax/' + encodeURIComponent(BMT_FORM_EMAIL), {
         method:  'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body:    JSON.stringify(payload)
@@ -265,12 +260,12 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function (r) { return r.json(); })
         .then(function (j) {
           if (btn) { btn.disabled = false; btn.textContent = orig; }
-          if (j && j.success) { form.reset(); openModal(d, true); }
+          if (j && (j.success === true || j.success === 'true')) { form.reset(); openModal(d, true); }
           else { openModal(d, false); }
         })
         .catch(function () {
           if (btn) { btn.disabled = false; btn.textContent = orig; }
-          openModal(d, false);
+          openModal(d, false);   // network blocked → offer WhatsApp / Gmail / copy
         });
     });
   });
