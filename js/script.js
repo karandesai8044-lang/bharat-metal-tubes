@@ -238,10 +238,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  var BMT_MAX_FILE = 5 * 1024 * 1024; // FormSubmit free-tier attachment limit
+
   document.querySelectorAll('form[data-inquiry]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var texts = form.querySelectorAll('input[type="text"]');
+      var texts     = form.querySelectorAll('input[type="text"]');
+      var fileInput = form.querySelector('input[type="file"]');
+      var file      = fileInput && fileInput.files[0];
       var d = {
         name:     texts[0] ? texts[0].value.trim() : '',
         qty:      texts[1] ? texts[1].value.trim() : '',
@@ -251,27 +255,32 @@ document.addEventListener('DOMContentLoaded', function () {
         msg:      val(form, 'textarea')
       };
 
+      if (file && file.size > BMT_MAX_FILE) {
+        alert('The attached file is larger than 5MB. Please choose a smaller file and try again.');
+        return;
+      }
+
       var btn  = form.querySelector('button[type="submit"]');
       var orig = btn ? btn.textContent : '';
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
-      // FormSubmit: emails the enquiry to BMT_FORM_EMAIL. No key, no server.
-      var payload = {
-        _subject:  subjectFor(d),
-        _template: 'table',
-        _captcha:  'false',
-        Name:      d.name,
-        Phone:     d.phone,
-        Email:     d.email,
-        Material:  d.material,
-        Quantity:  d.qty,
-        Message:   d.msg
-      };
+      // FormSubmit: emails the enquiry (with optional attachment) to BMT_FORM_EMAIL. No key, no server.
+      var payload = new FormData();
+      payload.append('_subject',  subjectFor(d));
+      payload.append('_template', 'table');
+      payload.append('_captcha',  'false');
+      payload.append('Name',      d.name);
+      payload.append('Phone',     d.phone);
+      payload.append('Email',     d.email);
+      payload.append('Material',  d.material);
+      payload.append('Quantity',  d.qty);
+      payload.append('Message',   d.msg);
+      if (file) payload.append('Attachment', file, file.name);
 
       fetch('https://formsubmit.co/ajax/' + encodeURIComponent(BMT_FORM_EMAIL), {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body:    JSON.stringify(payload)
+        headers: { 'Accept': 'application/json' },
+        body:    payload
       })
         .then(function (r) { return r.json(); })
         .then(function (j) {
