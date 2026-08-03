@@ -573,7 +573,7 @@ input[type="file"]::file-selector-button:hover{background:var(--orange);}
 .credit .kt-spark{width:6px;height:6px;border-radius:50%;background:var(--orange);flex:none;}
 
 /* --- map --- */
-.map-frame{width:100%;border:0;display:block;border-radius:4px;filter:grayscale(.25);}
+.map-frame{width:100%;height:150px;min-height:150px;border:0;display:block;border-radius:4px;filter:grayscale(.25);}
 
 @media (max-width:1080px){
   .topbar-left span.tb-hide{display:none;}
@@ -704,6 +704,15 @@ body.nav-lock .float-whatsapp{opacity:0;pointer-events:none;}
 
   /* value cards spacing */
   .value-card{padding:26px 22px;}
+}
+
+/* --- header photo: avoid over-zoomed crop on narrow screens ---
+   the source photo is an ultra-wide panorama; forcing it to "cover" a
+   much taller/narrower mobile box crops in on a small sliver of it.
+   "contain" shows the whole photo, letterboxed on the dark backdrop. */
+@media (max-width:768px){
+  .hero::before{background-size:contain;background-color:#0b0c0e;}
+  .page-header{background-size:cover,contain;background-color:#0b0c0e;}
 }
 
 /* --- COMPACT HERO (phones) --- */
