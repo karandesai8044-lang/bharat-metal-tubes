@@ -186,18 +186,27 @@ body.nav-lock{overflow:hidden;}
   overflow:hidden;
   padding-top:110px;
 }
-.hero::before{
-  content:"";position:absolute;inset:0;z-index:0;
-  background:url('../images/shope5new.jpg') center/cover no-repeat;
-  animation:heroZoom 22s ease-in-out infinite alternate;
+.hero-slides{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.hero-slide{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  opacity:0;will-change:opacity,transform;
+  animation:heroKenBurns 6s infinite;
+}
+.hero-slide:nth-child(1){animation-delay:0s;}
+.hero-slide:nth-child(2){animation-delay:1.5s;}
+.hero-slide:nth-child(3){animation-delay:3s;}
+.hero-slide:nth-child(4){animation-delay:4.5s;}
+@keyframes heroKenBurns{
+  0%  {opacity:0;transform:scale(1);}
+  6%  {opacity:1;}
+  25% {opacity:1;transform:scale(1.08);}
+  31% {opacity:0;transform:scale(1.09);}
+  100%{opacity:0;}
 }
 .hero::after{
   content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(120deg,rgba(9,10,12,0.92),rgba(14,16,19,0.72));
-}
-@keyframes heroZoom{
-  from{transform:scale(1);}
-  to{transform:scale(1.12);}
 }
 .hero-content{position:relative;z-index:2;max-width:800px;}
 .hero-content .eyebrow{color:var(--orange);margin-bottom:18px;}
@@ -227,7 +236,8 @@ body.nav-lock{overflow:hidden;}
 .hero-content > .hero-stats{opacity:0;animation:heroFadeUp .8s ease forwards;animation-delay:.7s;}
 
 @media (prefers-reduced-motion: reduce){
-  .hero::before{animation:none;}
+  .hero-slide{animation:none !important;opacity:0;}
+  .hero-slide:first-child{opacity:1;}
   .hero-content > *{animation:none !important;opacity:1;transform:none;}
 }
 
@@ -711,7 +721,7 @@ body.nav-lock .float-whatsapp{opacity:0;pointer-events:none;}
    much taller/narrower mobile box crops in on a small sliver of it.
    "contain" shows the whole photo, letterboxed on the dark backdrop. */
 @media (max-width:768px){
-  .hero::before{background-size:contain;background-color:#0b0c0e;}
+  .hero-slide{background-size:contain;background-color:#0b0c0e;}
   .page-header{background-size:cover,contain;background-color:#0b0c0e;}
 }
 
