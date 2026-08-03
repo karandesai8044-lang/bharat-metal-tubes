@@ -301,6 +301,8 @@ input[type="file"]::file-selector-button:hover{background:var(--orange);}
 .inquiry-grid{display:grid;grid-template-columns:0.8fr 1.2fr;gap:50px;align-items:center;}
 .inquiry-grid h2{color:var(--white);}
 .inquiry-grid p{color:var(--steel-light);margin-top:14px;}
+.section-fog .inquiry-grid h2{color:var(--navy);}
+.section-fog .inquiry-grid p{color:var(--steel);}
 .inquiry-points{margin-top:26px;display:flex;flex-direction:column;gap:12px;}
 .inquiry-points li{display:flex;gap:10px;color:var(--fog);font-size:14px;align-items:center;}
 .inquiry-points li::before{content:"✓";color:var(--orange);font-weight:700;}
@@ -523,10 +525,10 @@ input[type="file"]::file-selector-button:hover{background:var(--orange);}
 .value-card p{line-height:1.75;}
 .value-card .btn{margin-top:22px;}
 .contact-card{display:flex;flex-direction:column;height:100%;}
-.contact-card .cc-body{flex:1;}
-.contact-card a[href^="tel"],.contact-card a[href^="mailto"]{color:var(--text);transition:color .2s;
+.contact-card p{flex:1;}
+.contact-card a[href^="tel"]:not(.btn),.contact-card a[href^="mailto"]:not(.btn){color:var(--text);transition:color .2s;
   word-break:break-word;}
-.contact-card a[href^="tel"]:hover,.contact-card a[href^="mailto"]:hover{color:var(--orange);}
+.contact-card a[href^="tel"]:not(.btn):hover,.contact-card a[href^="mailto"]:not(.btn):hover{color:var(--orange);}
 
 /* --- send-choice modal --- */
 .send-modal{position:fixed;inset:0;z-index:3500;display:flex;align-items:center;justify-content:center;

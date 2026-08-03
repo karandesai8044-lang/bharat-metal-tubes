@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function () {
       e.preventDefault();
       var texts     = form.querySelectorAll('input[type="text"]');
       var fileInput = form.querySelector('input[type="file"]');
-      var file      = fileInput && fileInput.files[0];
+      var files     = fileInput ? Array.prototype.slice.call(fileInput.files) : [];
       var d = {
         name:     texts[0] ? texts[0].value.trim() : '',
         qty:      texts[1] ? texts[1].value.trim() : '',
@@ -270,8 +270,9 @@ document.addEventListener('DOMContentLoaded', function () {
         msg:      val(form, 'textarea')
       };
 
-      if (file && file.size > BMT_MAX_FILE) {
-        alert('The attached file is larger than 5MB. Please choose a smaller file and try again.');
+      var totalFileSize = files.reduce(function (sum, f) { return sum + f.size; }, 0);
+      if (totalFileSize > BMT_MAX_FILE) {
+        alert('The attached files are larger than 5MB combined. Please choose smaller or fewer files and try again.');
         return;
       }
 
@@ -282,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var subjectField = form.querySelector('[name="_subject"]');
       if (subjectField) subjectField.value = subjectFor(d);
 
-      if (file) {
+      if (files.length) {
         // Real multipart POST via hidden iframe — the only way FormSubmit delivers attachments.
         var frame  = getUploadFrame();
         var done   = false;

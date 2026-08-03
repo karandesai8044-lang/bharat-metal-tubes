@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="images/favicon.png">
-<link rel="stylesheet" href="css/style.css?v=15">
+<link rel="stylesheet" href="css/style.css?v=16">
 </head>
 <body>
   <div class="preloader" id="preloader">
@@ -157,7 +157,7 @@
             <div><label>Material Required</label><select name="Material"><option>Stainless Steel (SS)</option><option>Carbon / Mild Steel</option><option>Pipe Fittings &amp; Flanges</option><option>IBR &amp; Boiler Items</option><option>Industrial Valves</option><option>Sheets, Plates &amp; Coils</option><option>Non-Ferrous (Cu / Brass / Alu)</option><option>Other Products</option></select></div>
             <div class="full"><label>Quantity</label><input type="text" name="Quantity" placeholder="e.g. 500 kg / 200 pcs / 2 MT"></div>
             <div class="full"><label>Message</label><textarea name="Message" placeholder="Grade, size, schedule, delivery location..."></textarea></div>
-            <div class="full"><label>Attach File <span class="lbl-hint">(optional &mdash; drawing, spec sheet or photo, max 5MB)</span></label><input type="file" name="Attachment" class="file-input" accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.xls,.xlsx"></div>
+            <div class="full"><label>Attach Files <span class="lbl-hint">(optional &mdash; drawings, spec sheets or photos, max 5MB total)</span></label><input type="file" name="Attachment" class="file-input" accept=".pdf,.jpg,.jpeg,.png,.webp,.doc,.docx,.xls,.xlsx" multiple></div>
             <div class="full"><button type="submit" class="btn btn-orange btn-block">Submit Enquiry</button></div>
           </div>
         </form>
@@ -261,6 +261,6 @@
       <p class="send-note">Nothing is sent automatically &mdash; you always press send yourself.<br>We usually reply within a few working hours.</p>
     </div>
   </div>
-  <script src="js/script.js?v=7"></script>
+  <script src="js/script.js?v=8"></script>
 </body>
 </html>
