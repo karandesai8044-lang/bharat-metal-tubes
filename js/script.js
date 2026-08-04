@@ -86,6 +86,77 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.4 });
   document.querySelectorAll('[data-count]').forEach(function (c) { counterObs.observe(c); });
 
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var canHover = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* ============ 3D TILT CARDS (desktop / mouse only) ============
+     Touch devices skip this entirely — their "4D" moment is the .reveal
+     3D unfold on scroll plus the CSS-only :active press (see style.css). */
+  if (canHover && !reduceMotion) {
+    document.querySelectorAll('.tilt-card').forEach(function (card) {
+      var rect = null;
+      card.addEventListener('mouseenter', function () { rect = card.getBoundingClientRect(); });
+      card.addEventListener('mousemove', function (e) {
+        if (!rect) rect = card.getBoundingClientRect();
+        var px = (e.clientX - rect.left) / rect.width;
+        var py = (e.clientY - rect.top) / rect.height;
+        var rx = (0.5 - py) * 10;
+        var ry = (px - 0.5) * 10;
+        card.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = '';
+        rect = null;
+      });
+    });
+  }
+
+  /* ============ PARALLAX DEPTH (hero photo panel + about-intro photo) ============
+     Single rAF-throttled scroll handler, transform-only (no background-attachment:fixed
+     — that broke the hero on mobile earlier in this project, never again). */
+  if (!reduceMotion) {
+    var pxTargets = [];
+    var heroSlides = document.querySelector('.hero-slides');
+    if (heroSlides) pxTargets.push({ el: heroSlides, speed: 0.15, max: 20 }); // capped well inside the -12% inset buffer so it never reveals an edge
+    var aboutImg = document.querySelector('.parallax-img');
+    if (aboutImg) pxTargets.push({ el: aboutImg, speed: 0.12, max: 30 });
+
+    if (pxTargets.length) {
+      var pxTicking = false;
+      var updateParallax = function () {
+        var vh = window.innerHeight;
+        pxTargets.forEach(function (t) {
+          var rect = t.el.getBoundingClientRect();
+          var center = rect.top + rect.height / 2;
+          var offset = Math.max(-t.max, Math.min(t.max, (center - vh / 2) * t.speed));
+          t.el.style.transform = 'translateY(' + offset.toFixed(1) + 'px)';
+        });
+        pxTicking = false;
+      };
+      window.addEventListener('scroll', function () {
+        if (!pxTicking) { requestAnimationFrame(updateParallax); pxTicking = true; }
+      }, { passive: true });
+      updateParallax();
+    }
+  }
+
+  /* ============ AMBIENT GLOW / CURSOR SPOTLIGHT (Industries section) ============
+     Mobile: CSS keyframe drift (always-on, no JS). Desktop: mouse position instead. */
+  if (canHover && !reduceMotion) {
+    var glowSection = document.querySelector('.glow-section');
+    if (glowSection) {
+      glowSection.addEventListener('mousemove', function (e) {
+        var rect = glowSection.getBoundingClientRect();
+        glowSection.style.setProperty('--gx', ((e.clientX - rect.left) / rect.width * 100).toFixed(1) + '%');
+        glowSection.style.setProperty('--gy', ((e.clientY - rect.top) / rect.height * 100).toFixed(1) + '%');
+        glowSection.classList.add('glow-manual');
+      });
+      glowSection.addEventListener('mouseleave', function () {
+        glowSection.classList.remove('glow-manual');
+      });
+    }
+  }
+
   /* ============ ENQUIRY → CHOOSE WHATSAPP OR EMAIL ============ */
   var modal = document.getElementById('sendModal');
 

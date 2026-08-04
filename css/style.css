@@ -131,6 +131,26 @@ body{background-image:repeating-linear-gradient(115deg,rgba(20,22,26,0.022) 0px,
 }
 .stats-band{position:relative;}
 .stats-band::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.025) 0 2px,transparent 2px 9px);pointer-events:none;}
+
+/* --- ambient glow / cursor spotlight (Industries section) ---
+   mobile: always-on slow drift via background-position keyframes.
+   desktop: JS pauses the drift and drives the position from the cursor. */
+.glow-section{position:relative;overflow:hidden;isolation:isolate;}
+.glow-section::before{
+  content:"";position:absolute;inset:-20%;z-index:0;pointer-events:none;
+  background:radial-gradient(circle 420px at center,rgba(224,26,34,0.28),transparent 70%);
+  background-repeat:no-repeat;
+  animation:glowDrift 12s ease-in-out infinite;
+}
+@keyframes glowDrift{
+  0%,100%{background-position:15% 20%;}
+  50%{background-position:85% 65%;}
+}
+.glow-section.glow-manual::before{
+  animation-play-state:paused;
+  background-position:var(--gx,50%) var(--gy,50%);
+}
+.glow-section > .container{position:relative;z-index:1;}
 .card{position:relative;}
 .card::after{content:"";position:absolute;top:0;right:0;width:26px;height:26px;background:linear-gradient(135deg,transparent 50%,rgba(224,26,34,0.18) 50%);opacity:0;transition:opacity .3s ease;}
 .card:hover::after{opacity:1;}
@@ -195,7 +215,7 @@ body.nav-lock{overflow:hidden;}
   position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/5;
   box-shadow:0 30px 70px rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.08);
 }
-.hero-slides{position:absolute;inset:0;z-index:0;}
+.hero-slides{position:absolute;inset:-12%;z-index:0;}
 .hero-slide{
   position:absolute;inset:0;
   background-size:cover;background-position:center;background-repeat:no-repeat;
@@ -248,6 +268,10 @@ body.nav-lock{overflow:hidden;}
   .hero-slide{animation:none !important;opacity:0;}
   .hero-slide:first-child{opacity:1;}
   .hero-content > *{animation:none !important;opacity:1;transform:none;}
+  .reveal{transition:opacity .4s ease;transform:none;}
+  .reveal.in{transform:none;}
+  .tilt-card{transition:none !important;transform:none !important;}
+  .glow-section::before{animation:none !important;}
 }
 
 .page-header{
@@ -261,7 +285,7 @@ body.nav-lock{overflow:hidden;}
 .breadcrumb a{color:var(--orange);}
 
 /* ============ CARDS ============ */
-.grid{display:grid;gap:28px;}
+.grid{display:grid;gap:28px;perspective:1000px;}
 .grid-4{grid-template-columns:repeat(4,1fr);}
 .grid-3{grid-template-columns:repeat(auto-fit,minmax(252px,1fr));}
 .grid-2{grid-template-columns:repeat(2,1fr);}
@@ -288,6 +312,19 @@ body.nav-lock{overflow:hidden;}
 .industry-card:hover{background:rgba(224,26,34,0.14);border-color:var(--orange);transform:translateY(-5px);}
 .industry-card .ic{font-size:28px;color:var(--orange);margin-bottom:12px;}
 .industry-card h4{color:var(--white);font-size:14px;}
+
+/* --- tilt / layered-depth cards (homepage) ---
+   mobile: no hover, so the 3D .reveal unfold + a snappy tap-press are the
+   "4D" moment. desktop: JS adds continuous cursor-follow tilt on top. */
+.tilt-card{
+  transform-style:preserve-3d;
+  box-shadow:0 1px 2px rgba(20,22,26,0.06),0 8px 24px rgba(20,22,26,0.08),0 24px 48px rgba(20,22,26,0.10);
+  transition:box-shadow .3s ease,transform .12s ease-out;
+}
+.tilt-card:hover{box-shadow:0 1px 2px rgba(20,22,26,0.08),0 16px 34px rgba(20,22,26,0.12),0 34px 64px rgba(20,22,26,0.16);}
+@media (hover:none){
+  .tilt-card:active{transform:scale(.97) translateY(2px);transition:transform .15s ease;}
+}
 
 .stats-band{
   background:var(--navy-deep);padding:60px 0;
@@ -400,8 +437,12 @@ input[type="file"]::file-selector-button:hover{background:var(--orange);}
 .float-whatsapp{position:fixed;bottom:26px;right:26px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:26px;box-shadow:0 6px 20px rgba(0,0,0,0.3);z-index:999;animation:pulse 2.4s infinite;}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,0.5);}70%{box-shadow:0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
 
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease;}
-.reveal.in{opacity:1;transform:translateY(0);}
+.reveal{
+  opacity:0;transform:perspective(900px) translateY(26px) rotateX(-8deg);
+  transform-origin:center bottom;
+  transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.reveal.in{opacity:1;transform:perspective(900px) translateY(0) rotateX(0deg);}
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:1080px){
