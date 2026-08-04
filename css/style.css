@@ -24,7 +24,7 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
 [id]{scroll-margin-top:130px;}
 body{
   font-family:'Inter',sans-serif;
@@ -832,7 +832,7 @@ body.nav-lock .menu-toggle{opacity:0;pointer-events:none;}
   .hero-grid{grid-template-columns:1fr;gap:28px;}
   .hero-visual{
     aspect-ratio:16/10;border-radius:0;
-    width:calc(100% + 48px);margin-left:-24px;margin-right:-24px;
+    width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
     box-shadow:none;border-left:0;border-right:0;
   }
   /* smaller overlap on narrow screens — a big float would collide with the
