@@ -818,13 +818,6 @@ body.nav-lock .menu-toggle{opacity:0;pointer-events:none;}
   .value-card{padding:26px 22px;}
 }
 
-/* --- page-header photo: avoid over-zoomed crop on narrow screens ---
-   the source photo is an ultra-wide panorama; forcing it to "cover" a
-   much taller/narrower mobile box crops in on a small sliver of it.
-   "contain" shows the whole photo, letterboxed on the dark backdrop. */
-@media (max-width:768px){
-  .page-header{background-size:cover,contain;background-color:#0b0c0e;}
-}
 
 /* --- hero split layout: stack visual panel under the text on tablets/phones,
    full-bleed edge-to-edge (no left/right gap from the container padding) --- */
