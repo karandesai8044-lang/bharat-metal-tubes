@@ -314,8 +314,9 @@ body.nav-lock{overflow:hidden;}
 .industry-card h4{color:var(--white);font-size:14px;}
 
 /* --- tilt / layered-depth cards (homepage) ---
-   mobile: no hover, so the 3D .reveal unfold + a snappy tap-press are the
-   "4D" moment. desktop: JS adds continuous cursor-follow tilt on top. */
+   mobile: the moment a card scrolls into view IS the "4D" moment — a
+   pronounced 3D tilt-and-settle, no tap needed (a snappy tap-press on
+   top is just a bonus). desktop: JS adds continuous cursor-follow tilt. */
 .tilt-card{
   transform-style:preserve-3d;
   box-shadow:0 1px 2px rgba(20,22,26,0.06),0 8px 24px rgba(20,22,26,0.08),0 24px 48px rgba(20,22,26,0.10);
@@ -324,6 +325,13 @@ body.nav-lock{overflow:hidden;}
 .tilt-card:hover{box-shadow:0 1px 2px rgba(20,22,26,0.08),0 16px 34px rgba(20,22,26,0.12),0 34px 64px rgba(20,22,26,0.16);}
 @media (hover:none){
   .tilt-card:active{transform:scale(.97) translateY(2px);transition:transform .15s ease;}
+  /* stronger tilt-in on scroll-arrival than the site-wide .reveal default */
+  .tilt-card.reveal{
+    transform:perspective(700px) translateY(30px) rotateX(-20deg) rotateY(-7deg);
+    transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1);
+  }
+  .tilt-card.reveal:nth-child(even){transform:perspective(700px) translateY(30px) rotateX(-20deg) rotateY(7deg);}
+  .tilt-card.reveal.in{transform:perspective(700px) translateY(0) rotateX(0deg) rotateY(0deg) !important;}
 }
 
 .stats-band{
