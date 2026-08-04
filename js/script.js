@@ -50,10 +50,13 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeNav(); });
   }
 
-  /* ============ NAVBAR SHADOW ============ */
+  /* ============ NAVBAR SHADOW + GLASS ON SCROLL ============ */
   var nav = document.querySelector('.navbar');
   window.addEventListener('scroll', function () {
-    if (nav) nav.style.boxShadow = window.scrollY > 20 ? '0 6px 20px rgba(0,0,0,0.25)' : 'none';
+    if (!nav) return;
+    var scrolled = window.scrollY > 20;
+    nav.style.boxShadow = scrolled ? '0 6px 20px rgba(0,0,0,0.25)' : 'none';
+    nav.classList.toggle('scrolled', scrolled);
   });
 
   /* ============ REVEAL + COUNTERS ============ */
