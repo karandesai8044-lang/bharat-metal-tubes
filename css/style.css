@@ -733,15 +733,20 @@ body.nav-lock .float-whatsapp{opacity:0;pointer-events:none;}
   .page-header{background-size:cover,contain;background-color:#0b0c0e;}
 }
 
-/* --- hero split layout: stack visual panel under the text on tablets/phones --- */
+/* --- hero split layout: stack visual panel under the text on tablets/phones,
+   full-bleed edge-to-edge (no left/right gap from the container padding) --- */
 @media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr;gap:36px;}
-  .hero-visual{aspect-ratio:4/3;}
+  .hero-grid{grid-template-columns:1fr;gap:28px;}
+  .hero-visual{
+    aspect-ratio:16/10;border-radius:0;
+    width:calc(100% + 48px);margin-left:-24px;margin-right:-24px;
+    box-shadow:none;border-left:0;border-right:0;
+  }
 }
 
 /* --- COMPACT HERO (phones) --- */
 @media (max-width:600px){
-  .hero{min-height:auto;padding:118px 0 40px;}
+  .hero{min-height:auto;padding:110px 0 0;}
   .hero-content{max-width:100%;}
   .hero .eyebrow{font-size:11px;letter-spacing:1.6px;}
   .hero h1{font-size:28px;line-height:1.22;}
