@@ -189,8 +189,8 @@ body.nav-lock{overflow:hidden;}
 .hero-slides{position:absolute;inset:0;z-index:0;overflow:hidden;}
 .hero-slide{
   position:absolute;inset:0;
-  background-size:cover;background-position:center;background-repeat:no-repeat;
-  opacity:0;will-change:opacity,transform;
+  background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;
+  opacity:0;will-change:opacity;
   animation:heroKenBurns 6s infinite;
 }
 .hero-slide:nth-child(1){animation-delay:0s;}
@@ -198,10 +198,10 @@ body.nav-lock{overflow:hidden;}
 .hero-slide:nth-child(3){animation-delay:3s;}
 .hero-slide:nth-child(4){animation-delay:4.5s;}
 @keyframes heroKenBurns{
-  0%  {opacity:0;transform:scale(1);}
+  0%  {opacity:0;}
   6%  {opacity:1;}
-  25% {opacity:1;transform:scale(1.08);}
-  31% {opacity:0;transform:scale(1.09);}
+  25% {opacity:1;}
+  31% {opacity:0;}
   100%{opacity:0;}
 }
 .hero::after{
@@ -243,7 +243,7 @@ body.nav-lock{overflow:hidden;}
 
 .page-header{
   position:relative;padding:180px 0 80px;
-  background:linear-gradient(120deg,rgba(11,12,14,0.86),rgba(20,22,26,0.55)),url('../images/shope5new.jpg') center/cover no-repeat;
+  background:linear-gradient(120deg,rgba(11,12,14,0.86),rgba(20,22,26,0.55)),url('../images/Hero Stockyardnew.jpg') center/cover no-repeat;
   color:var(--white);
 }
 .page-header .eyebrow{margin-bottom:14px;}
