@@ -5,17 +5,12 @@ var BMT_EMAIL = 'bharatmetal2013@gmail.com';    // business email
 // ---------------------------------------------------------------------------
 // EMAIL DELIVERY — enquiries are emailed via FormSubmit (no server, no key).
 //
-// Change BMT_FORM_EMAIL to switch where enquiries land:
-//   • For now it goes to K-Tech Solutions (testing).
-//   • Later swap it to the client's inbox (bharatmetal2013@gmail.com) and
-//     push — that single line is the only change needed.
-//
 // FIRST-TIME ACTIVATION (one click, once per email address):
 //   The very first enquiry triggers a "Confirm your email" mail from
 //   FormSubmit to the address below. Open it and click "Activate" once —
 //   after that every enquiry is delivered automatically.
 // ---------------------------------------------------------------------------
-var BMT_FORM_EMAIL = 'ktechsolutions.in@gmail.com';   // TODO: swap to client's inbox for production
+var BMT_FORM_EMAIL = 'bharatmetal2013@gmail.com';
 
 document.addEventListener('DOMContentLoaded', function () {
 
