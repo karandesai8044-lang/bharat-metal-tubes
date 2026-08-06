@@ -23,13 +23,16 @@
 <meta name="twitter:title" content="Other Products | Dairy Fittings, Fasteners, PP/HDPE &amp; Conveyor Items — Bharat Metal &amp; Tubes">
 <meta name="twitter:description" content="Dairy and ferrule fittings, fasteners, nuts, bolts, washers, anchor fasteners, wire forms, PP and HDPE pipes, fittings and valves, plus conveyor items and roller idler pulleys. Raipur, C.G.">
 <meta name="twitter:image" content="https://bharatmetalandtubes.com/images/og-cover.jpg?v=2">
+<link rel="preload" as="image" href="images/Hero%20Stockyardnew.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap"></noscript>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<link rel="stylesheet" href="css/style.css?v=30">
+<link rel="stylesheet" href="css/style.css?v=31">
 </head>
 <body>
   <div class="preloader" id="preloader">
@@ -52,10 +55,12 @@
         pl.classList.add('pl-hide');
         root.classList.remove('pl-lock');
         setTimeout(function(){ if(pl.parentNode) pl.parentNode.removeChild(pl); }, reduce ? 0 : 500);
-      }, Math.max(0, 900 - (Date.now() - t0)));
+      }, Math.max(0, 350 - (Date.now() - t0)));
     }
-    window.addEventListener('load', finish);
-    setTimeout(finish, 4000);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', finish);
+    } else { finish(); }
+    setTimeout(finish, 1500);
   })();
   </script>
 
@@ -74,7 +79,7 @@
     </div>
     <div class="nav-inner">
       <a href="index.html" class="logo">
-        <div class="logo-mark"><img src="images/logo.png" alt="Bharat Metal &amp; Tubes logo"></div>
+        <div class="logo-mark"><img width="160" height="160" src="images/logo-160.png" alt="Bharat Metal &amp; Tubes logo"></div>
         <div>
           <span class="logo-text">Bharat <span>Metal</span></span>
           <span class="logo-sub">Stockist &amp; Suppliers &middot; Raipur</span>
@@ -117,6 +122,8 @@
       </div>
     </div>
   </nav>
+
+  <main id="main-content">
   <div class="nav-overlay"></div>
 
   <header class="page-header">
@@ -140,7 +147,7 @@
   <section class="product-detail" id="dairy">
     <div class="container">
       <div class="pd-grid" style="align-items:center;">
-        <img class="reveal" loading="lazy" src="images/Dairy Fittingsnew.jpg" alt="Dairy Fittings"><div class="reveal">
+        <img width="800" height="598" class="reveal" loading="lazy" src="images/Dairy Fittingsnew.jpg" alt="Dairy Fittings"><div class="reveal">
           <span class="eyebrow">Hygienic Fittings</span>
           <h2 style="margin-top:12px;font-size:29px;">Dairy &amp; Ferrule Fittings</h2>
           <p style="margin-top:14px;color:var(--steel);">SS 304 / 316 dairy and ferrule fittings for hygienic process lines in dairy, food, beverage and pharmaceutical plants — including unions, bends, tees, ferrules and clamps.</p>
@@ -160,7 +167,7 @@
           <p style="margin-top:14px;color:var(--steel);">A complete fastener range in stainless steel, carbon steel and galvanised finish — hex bolts, nuts, washers, studs, anchor fasteners, screws and threaded rods.</p>
           <div style="margin-top:16px;"><span class="tag-pill">Hex Bolt</span><span class="tag-pill">Nut</span><span class="tag-pill">Washer</span><span class="tag-pill">Stud</span><span class="tag-pill">Anchor</span><span class="tag-pill">Threaded Rod</span></div>
           <ul class="app-list"><li>SS 304 / 316 and high-tensile grades</li><li>Property class 8.8, 10.9 &amp; 12.9</li><li>Galvanised and zinc plated</li><li>Wire forms and anchor fasteners</li></ul>
-        </div><img class="reveal" loading="lazy" src="images/FASTNERnew.jpg" alt="Fasteners">
+        </div><img width="800" height="598" class="reveal" loading="lazy" src="images/FASTNERnew.jpg" alt="Fasteners">
       </div>
     </div>
   </section>
@@ -168,7 +175,7 @@
   <section class="product-detail" id="pp-hdpe">
     <div class="container">
       <div class="pd-grid" style="align-items:center;">
-        <img class="reveal" loading="lazy" src="images/PP and HDPE Itemsnew.jpg" alt="PP and HDPE Fittings"><div class="reveal">
+        <img width="800" height="598" class="reveal" loading="lazy" src="images/PP and HDPE Itemsnew.jpg" alt="PP and HDPE Fittings"><div class="reveal">
           <span class="eyebrow">Plastic Piping</span>
           <h2 style="margin-top:12px;font-size:29px;">Polypropylene &amp; H.D.P.E. Items</h2>
           <p style="margin-top:14px;color:var(--steel);">PP and HDPE pipes, pipe-fittings and flanges along with polypropylene moulded valves — the economical, corrosion-proof choice for chemical and effluent lines.</p>
@@ -188,7 +195,7 @@
           <p style="margin-top:14px;color:var(--steel);">All types of conveyor items including roller idler pulleys and idler frames, supplied alongside our Hardox and wear plate range for material handling in mining, cement and steel plants.</p>
           <div style="margin-top:16px;"><span class="tag-pill">Idler Roller</span><span class="tag-pill">Idler Frame</span><span class="tag-pill">Pulley</span><span class="tag-pill">Wear Liner</span><span class="tag-pill">Conveyor Item</span></div>
           <ul class="app-list"><li>Carrying, return &amp; impact idlers</li><li>Drive and snub pulleys</li><li>Hardox lined chutes and hoppers</li><li>Built to plant drawings</li></ul>
-        </div><img class="reveal" loading="lazy" src="images/Conveyor Itemsnew.jpg" alt="Conveyor Items">
+        </div><img width="800" height="598" class="reveal" loading="lazy" src="images/Conveyor Itemsnew.jpg" alt="Conveyor Items">
       </div>
     </div>
   </section>
@@ -201,12 +208,14 @@
     </div>
   </section>
 
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <a href="index.html" class="logo" style="margin-bottom:18px;display:inline-flex;">
-            <div class="logo-mark"><img src="images/logo.png" alt="Bharat Metal &amp; Tubes logo"></div>
+            <div class="logo-mark"><img width="160" height="160" src="images/logo-160.png" alt="Bharat Metal &amp; Tubes logo"></div>
             <span class="logo-text">Bharat <span>Metal</span></span>
           </a>
           <p>Bharat Metal &amp; Tubes — Raipur (C.G.) based importer, stockist &amp; supplier of stainless steel, carbon steel, mild steel and non-ferrous metals. Pipes, tubes, sheets, plates, flanges, fittings, valves &amp; IBR items.</p>
@@ -215,7 +224,7 @@
           </div>
         </div>
         <div>
-          <h4>Quick Links</h4>
+          <h3>Quick Links</h3>
           <ul>
             <li><a href="about.html">About Us</a></li>
             <li><a href="products.html">Products</a></li>
@@ -226,7 +235,7 @@
           </ul>
         </div>
         <div>
-          <h4>Products</h4>
+          <h3>Products</h3>
           <ul>
             <li><a href="ss-products.html">Stainless Steel</a></li>
             <li><a href="cs-ms-products.html">Carbon &amp; Mild Steel</a></li>
@@ -237,7 +246,7 @@
           </ul>
         </div>
         <div>
-          <h4>Contact Details</h4>
+          <h3>Contact Details</h3>
           <p>Bharat Metal &amp; Tubes,<br>Shop No. A-04, Raipur Machinery Marchant Association Complex, Nr. Vayas Talab, Bhanpuri, Raipur (C.G.)</p>
           <p style="margin-top:10px;">+91 93000 02940 / 90987 25624<br>bharatmetal2013@gmail.com</p>
           <iframe class="map-frame" src="https://www.google.com/maps?q=Bhanpuri%2C+Raipur%2C+Chhattisgarh%2C+India&amp;output=embed" height="150" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Bharat Metal &amp; Tubes location, Bhanpuri, Raipur"></iframe>

@@ -23,13 +23,16 @@
 <meta name="twitter:title" content="Sheets, Plates &amp; Coils | Hardox, BQ &amp; SS Plates — Bharat Metal &amp; Tubes">
 <meta name="twitter:description" content="SS and CS sheets, plates and coils plus Hardox 400/500/600, Jindal Hard, Sail Hard and BQ wear plates. Chequered, perforated, corrugated and profile sheets. Raipur, Chhattisgarh.">
 <meta name="twitter:image" content="https://bharatmetalandtubes.com/images/og-cover.jpg?v=2">
+<link rel="preload" as="image" href="images/Hero%20Stockyardnew.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap"></noscript>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<link rel="stylesheet" href="css/style.css?v=30">
+<link rel="stylesheet" href="css/style.css?v=31">
 </head>
 <body>
   <div class="preloader" id="preloader">
@@ -52,10 +55,12 @@
         pl.classList.add('pl-hide');
         root.classList.remove('pl-lock');
         setTimeout(function(){ if(pl.parentNode) pl.parentNode.removeChild(pl); }, reduce ? 0 : 500);
-      }, Math.max(0, 900 - (Date.now() - t0)));
+      }, Math.max(0, 350 - (Date.now() - t0)));
     }
-    window.addEventListener('load', finish);
-    setTimeout(finish, 4000);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', finish);
+    } else { finish(); }
+    setTimeout(finish, 1500);
   })();
   </script>
 
@@ -74,7 +79,7 @@
     </div>
     <div class="nav-inner">
       <a href="index.html" class="logo">
-        <div class="logo-mark"><img src="images/logo.png" alt="Bharat Metal &amp; Tubes logo"></div>
+        <div class="logo-mark"><img width="160" height="160" src="images/logo-160.png" alt="Bharat Metal &amp; Tubes logo"></div>
         <div>
           <span class="logo-text">Bharat <span>Metal</span></span>
           <span class="logo-sub">Stockist &amp; Suppliers &middot; Raipur</span>
@@ -117,6 +122,8 @@
       </div>
     </div>
   </nav>
+
+  <main id="main-content">
   <div class="nav-overlay"></div>
 
   <header class="page-header">
@@ -140,7 +147,7 @@
   <section class="product-detail" id="ss-sheets">
     <div class="container">
       <div class="pd-grid" style="align-items:center;">
-        <img class="reveal" loading="lazy" src="images/SS Sheetnew.jpg" alt="SS Sheet Plate Coil"><div class="reveal">
+        <img width="800" height="598" class="reveal" loading="lazy" src="images/SS Sheetnew.jpg" alt="SS Sheet Plate Coil"><div class="reveal">
           <span class="eyebrow">Stainless Steel</span>
           <h2 style="margin-top:12px;font-size:29px;">SS Sheet, Plate &amp; Coil</h2>
           <p style="margin-top:14px;color:var(--steel);">Stainless steel sheets, plates and coils in ASTM A312 TP 304, 304L, 304H, 316, 316L, 316H, 316Ti, 321, 309, 310, 347, 409, 410, 420, 430 and 904L grades.</p>
@@ -160,7 +167,7 @@
           <p style="margin-top:14px;color:var(--steel);">Carbon steel plates and sheets confirming to ASTM A283, A516 / ASME SA283, SA516, 517 Gr. 60 / 70, IS 2062 and IS 2002 — including boiler quality plates.</p>
           <div style="margin-top:16px;"><span class="tag-pill">A283</span><span class="tag-pill">A516 Gr 60/70</span><span class="tag-pill">SA516</span><span class="tag-pill">IS 2062</span><span class="tag-pill">BQ Plate</span></div>
           <ul class="app-list"><li>Thickness 3 mm to 150 mm</li><li>Boiler and pressure vessel quality</li><li>Normalised &amp; tested plates</li><li>Profile cutting available</li></ul>
-        </div><img class="reveal" loading="lazy" src="images/Platesnew.jpg" alt="Carbon Steel Plate">
+        </div><img width="800" height="598" class="reveal" loading="lazy" src="images/Platesnew.jpg" alt="Carbon Steel Plate">
       </div>
     </div>
   </section>
@@ -168,7 +175,7 @@
   <section class="product-detail" id="hardox">
     <div class="container">
       <div class="pd-grid" style="align-items:center;">
-        <img class="reveal" loading="lazy" src="images/Hardox Plates new.jpg" alt="Hardox Wear Plate"><div class="reveal">
+        <img width="800" height="598" class="reveal" loading="lazy" src="images/Hardox Plates new.jpg" alt="Hardox Wear Plate"><div class="reveal">
           <span class="eyebrow">Wear Plates</span>
           <h2 style="margin-top:12px;font-size:29px;">Hardox, Jindal Hard, Sail Hard &amp; BQ Plate</h2>
           <p style="margin-top:14px;color:var(--steel);">Abrasion-resistant wear plates in Hardox 400, 500 and 600 grade, along with Jindal Hard plate, Sail Hard plate and BQ plate — for crushers, chutes, hoppers, buckets and conveyor liners.</p>
@@ -188,7 +195,7 @@
           <p style="margin-top:14px;color:var(--steel);">Chequered plates for anti-skid flooring, perforated sheets for screening and filtration, plus corrugated and profile roofing sheets in GP / GC and colour-coated finishes.</p>
           <div style="margin-top:16px;"><span class="tag-pill">Chequered</span><span class="tag-pill">Perforated</span><span class="tag-pill">Corrugated</span><span class="tag-pill">Profile Sheet</span><span class="tag-pill">GP / GC</span><span class="tag-pill">Wire Mesh</span></div>
           <ul class="app-list"><li>Anti-skid chequered plate in SS &amp; MS</li><li>Custom hole size and pitch perforation</li><li>Roofing and cladding profile sheets</li><li>Wire mesh and expanded metal</li></ul>
-        </div><img class="reveal" loading="lazy" src="images/Perforated Sheetnew.jpg" alt="Perforated Sheet">
+        </div><img width="800" height="598" class="reveal" loading="lazy" src="images/Perforated Sheetnew.jpg" alt="Perforated Sheet">
       </div>
     </div>
   </section>
@@ -201,12 +208,14 @@
     </div>
   </section>
 
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <a href="index.html" class="logo" style="margin-bottom:18px;display:inline-flex;">
-            <div class="logo-mark"><img src="images/logo.png" alt="Bharat Metal &amp; Tubes logo"></div>
+            <div class="logo-mark"><img width="160" height="160" src="images/logo-160.png" alt="Bharat Metal &amp; Tubes logo"></div>
             <span class="logo-text">Bharat <span>Metal</span></span>
           </a>
           <p>Bharat Metal &amp; Tubes — Raipur (C.G.) based importer, stockist &amp; supplier of stainless steel, carbon steel, mild steel and non-ferrous metals. Pipes, tubes, sheets, plates, flanges, fittings, valves &amp; IBR items.</p>
@@ -215,7 +224,7 @@
           </div>
         </div>
         <div>
-          <h4>Quick Links</h4>
+          <h3>Quick Links</h3>
           <ul>
             <li><a href="about.html">About Us</a></li>
             <li><a href="products.html">Products</a></li>
@@ -226,7 +235,7 @@
           </ul>
         </div>
         <div>
-          <h4>Products</h4>
+          <h3>Products</h3>
           <ul>
             <li><a href="ss-products.html">Stainless Steel</a></li>
             <li><a href="cs-ms-products.html">Carbon &amp; Mild Steel</a></li>
@@ -237,7 +246,7 @@
           </ul>
         </div>
         <div>
-          <h4>Contact Details</h4>
+          <h3>Contact Details</h3>
           <p>Bharat Metal &amp; Tubes,<br>Shop No. A-04, Raipur Machinery Marchant Association Complex, Nr. Vayas Talab, Bhanpuri, Raipur (C.G.)</p>
           <p style="margin-top:10px;">+91 93000 02940 / 90987 25624<br>bharatmetal2013@gmail.com</p>
           <iframe class="map-frame" src="https://www.google.com/maps?q=Bhanpuri%2C+Raipur%2C+Chhattisgarh%2C+India&amp;output=embed" height="150" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Bharat Metal &amp; Tubes location, Bhanpuri, Raipur"></iframe>

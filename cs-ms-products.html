@@ -23,13 +23,16 @@
 <meta name="twitter:title" content="Carbon &amp; Mild Steel | CS Seamless Pipe, MS Pipe, Plates &amp; Structural — Bharat Metal &amp; Tubes">
 <meta name="twitter:description" content="Carbon steel seamless pipes (A106 Gr B, API-5L), boiler tubes (BS 3059, SA 179), MS &amp; GI ERW pipes (IS 1239 / 3589), MS sheets, plates, angles, channels, beams and structural steel. Raipur, C.G.">
 <meta name="twitter:image" content="https://bharatmetalandtubes.com/images/og-cover.jpg?v=2">
+<link rel="preload" as="image" href="images/Hero%20Stockyardnew.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap"></noscript>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<link rel="stylesheet" href="css/style.css?v=30">
+<link rel="stylesheet" href="css/style.css?v=31">
 </head>
 <body>
   <div class="preloader" id="preloader">
@@ -52,10 +55,12 @@
         pl.classList.add('pl-hide');
         root.classList.remove('pl-lock');
         setTimeout(function(){ if(pl.parentNode) pl.parentNode.removeChild(pl); }, reduce ? 0 : 500);
-      }, Math.max(0, 900 - (Date.now() - t0)));
+      }, Math.max(0, 350 - (Date.now() - t0)));
     }
-    window.addEventListener('load', finish);
-    setTimeout(finish, 4000);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', finish);
+    } else { finish(); }
+    setTimeout(finish, 1500);
   })();
   </script>
 
@@ -74,7 +79,7 @@
     </div>
     <div class="nav-inner">
       <a href="index.html" class="logo">
-        <div class="logo-mark"><img src="images/logo.png" alt="Bharat Metal &amp; Tubes logo"></div>
+        <div class="logo-mark"><img width="160" height="160" src="images/logo-160.png" alt="Bharat Metal &amp; Tubes logo"></div>
         <div>
           <span class="logo-text">Bharat <span>Metal</span></span>
           <span class="logo-sub">Stockist &amp; Suppliers &middot; Raipur</span>
@@ -117,6 +122,8 @@
       </div>
     </div>
   </nav>
+
+  <main id="main-content">
   <div class="nav-overlay"></div>
 
   <header class="page-header">
@@ -140,7 +147,7 @@
   <section class="product-detail" id="cs-pipe">
     <div class="container">
       <div class="pd-grid" style="align-items:center;">
-        <img class="reveal" loading="lazy" src="images/Seamless Pipenew.jpg" alt="Carbon Steel Seamless Pipe"><div class="reveal">
+        <img width="765" height="1024" class="reveal" loading="lazy" src="images/Seamless Pipenew.jpg" alt="Carbon Steel Seamless Pipe"><div class="reveal">
           <span class="eyebrow">Seamless Pipes</span>
           <h2 style="margin-top:12px;font-size:29px;">C.S. Seamless Pipe</h2>
           <p style="margin-top:14px;color:var(--steel);">TATA / MSL / ISMT and imported origin carbon steel seamless pipes confirming to ASTM A 106 Grade B, SA 179, DIN 17175, A-333 Grade 6 and API-5L — supplied in IBR and non-IBR as required.</p>
@@ -160,7 +167,7 @@
           <p style="margin-top:14px;color:var(--steel);">Boiler quality tubes as per BS 3059 and SA 179 for heat exchangers, economisers, superheaters and boiler applications — available with IBR certification.</p>
           <div style="margin-top:16px;"><span class="tag-pill">BS 3059</span><span class="tag-pill">SA 179</span><span class="tag-pill">IBR</span><span class="tag-pill">Heat Exchanger</span></div>
           <ul class="app-list"><li>Cold drawn seamless &amp; ERW</li><li>Precise OD and wall tolerance</li><li>IBR Form III-C certification</li><li>Hydro &amp; eddy current tested</li></ul>
-        </div><img class="reveal" loading="lazy" src="images/Carbon Steel (C.S.) Steel pipenew.jpg" alt="Boiler Tubes">
+        </div><img width="800" height="598" class="reveal" loading="lazy" src="images/Carbon Steel (C.S.) Steel pipenew.jpg" alt="Boiler Tubes">
       </div>
     </div>
   </section>
@@ -168,7 +175,7 @@
   <section class="product-detail" id="ms-pipe">
     <div class="container">
       <div class="pd-grid" style="align-items:center;">
-        <img class="reveal" loading="lazy" src="images/ms pipenew.jpg" alt="MS ERW Pipe"><div class="reveal">
+        <img width="800" height="598" class="reveal" loading="lazy" src="images/ms pipenew.jpg" alt="MS ERW Pipe"><div class="reveal">
           <span class="eyebrow">ERW Pipes</span>
           <h2 style="margin-top:12px;font-size:29px;">M.S. &amp; G.I. ERW Pipe</h2>
           <p style="margin-top:14px;color:var(--steel);">TATA / ZENITH / JINDAL make mild steel and galvanised iron ERW pipes as per IS 1239 and IS 3589 Fe 330 / 410 — for water, gas, structural and general engineering use.</p>
@@ -188,7 +195,7 @@
           <p style="margin-top:14px;color:var(--steel);">Hot rolled and cold rolled mild steel sheets, plates, coils, chequered plates and GP / GC sheets as per IS 2062 and IS 2002 in all commercial thicknesses.</p>
           <div style="margin-top:16px;"><span class="tag-pill">HR Sheet</span><span class="tag-pill">CR Sheet</span><span class="tag-pill">GP / GC</span><span class="tag-pill">Chequered</span><span class="tag-pill">IS 2062</span></div>
           <ul class="app-list"><li>Thickness 1 mm to 150 mm</li><li>Standard &amp; custom plate sizes</li><li>Boiler quality (BQ) plates available</li><li>Gas &amp; plasma cutting to size</li></ul>
-        </div><img class="reveal" loading="lazy" src="images/MS Platenew.jpg" alt="MS Plate">
+        </div><img width="800" height="598" class="reveal" loading="lazy" src="images/MS Platenew.jpg" alt="MS Plate">
       </div>
     </div>
   </section>
@@ -196,7 +203,7 @@
   <section class="product-detail" id="ms-structural">
     <div class="container">
       <div class="pd-grid" style="align-items:center;">
-        <img class="reveal" loading="lazy" src="images/Structural Materianew.jpg" alt="MS Structural Material"><div class="reveal">
+        <img width="800" height="598" class="reveal" loading="lazy" src="images/Structural Materianew.jpg" alt="MS Structural Material"><div class="reveal">
           <span class="eyebrow">Structural</span>
           <h2 style="margin-top:12px;font-size:29px;">M.S. Angle, Channel, Beam &amp; Flat</h2>
           <p style="margin-top:14px;color:var(--steel);">A full range of structural mild steel — equal and unequal angles, C and U channels, I-beams, joists and flat bars for fabrication, construction and heavy engineering.</p>
@@ -215,12 +222,14 @@
     </div>
   </section>
 
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <a href="index.html" class="logo" style="margin-bottom:18px;display:inline-flex;">
-            <div class="logo-mark"><img src="images/logo.png" alt="Bharat Metal &amp; Tubes logo"></div>
+            <div class="logo-mark"><img width="160" height="160" src="images/logo-160.png" alt="Bharat Metal &amp; Tubes logo"></div>
             <span class="logo-text">Bharat <span>Metal</span></span>
           </a>
           <p>Bharat Metal &amp; Tubes — Raipur (C.G.) based importer, stockist &amp; supplier of stainless steel, carbon steel, mild steel and non-ferrous metals. Pipes, tubes, sheets, plates, flanges, fittings, valves &amp; IBR items.</p>
@@ -229,7 +238,7 @@
           </div>
         </div>
         <div>
-          <h4>Quick Links</h4>
+          <h3>Quick Links</h3>
           <ul>
             <li><a href="about.html">About Us</a></li>
             <li><a href="products.html">Products</a></li>
@@ -240,7 +249,7 @@
           </ul>
         </div>
         <div>
-          <h4>Products</h4>
+          <h3>Products</h3>
           <ul>
             <li><a href="ss-products.html">Stainless Steel</a></li>
             <li><a href="cs-ms-products.html">Carbon &amp; Mild Steel</a></li>
@@ -251,7 +260,7 @@
           </ul>
         </div>
         <div>
-          <h4>Contact Details</h4>
+          <h3>Contact Details</h3>
           <p>Bharat Metal &amp; Tubes,<br>Shop No. A-04, Raipur Machinery Marchant Association Complex, Nr. Vayas Talab, Bhanpuri, Raipur (C.G.)</p>
           <p style="margin-top:10px;">+91 93000 02940 / 90987 25624<br>bharatmetal2013@gmail.com</p>
           <iframe class="map-frame" src="https://www.google.com/maps?q=Bhanpuri%2C+Raipur%2C+Chhattisgarh%2C+India&amp;output=embed" height="150" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Bharat Metal &amp; Tubes location, Bhanpuri, Raipur"></iframe>

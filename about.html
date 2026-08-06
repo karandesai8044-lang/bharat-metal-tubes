@@ -22,13 +22,16 @@
 <meta name="twitter:title" content="About Us | Bharat Metal &amp; Tubes — Raipur (C.G.)">
 <meta name="twitter:description" content="About Bharat Metal &amp; Tubes, Raipur (C.G.) — leading importers, stockist and suppliers of ferrous &amp; non-ferrous metals. Company profile, organisation setup, GST, MSME details and industries we serve.">
 <meta name="twitter:image" content="https://bharatmetalandtubes.com/images/og-cover.jpg?v=2">
+<link rel="preload" as="image" href="images/Hero%20Stockyardnew.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap"></noscript>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-<link rel="stylesheet" href="css/style.css?v=30">
+<link rel="stylesheet" href="css/style.css?v=31">
 </head>
 <body>
   <div class="preloader" id="preloader">
@@ -51,10 +54,12 @@
         pl.classList.add('pl-hide');
         root.classList.remove('pl-lock');
         setTimeout(function(){ if(pl.parentNode) pl.parentNode.removeChild(pl); }, reduce ? 0 : 500);
-      }, Math.max(0, 900 - (Date.now() - t0)));
+      }, Math.max(0, 350 - (Date.now() - t0)));
     }
-    window.addEventListener('load', finish);
-    setTimeout(finish, 4000);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', finish);
+    } else { finish(); }
+    setTimeout(finish, 1500);
   })();
   </script>
 
@@ -73,7 +78,7 @@
     </div>
     <div class="nav-inner">
       <a href="index.html" class="logo">
-        <div class="logo-mark"><img src="images/logo.png" alt="Bharat Metal &amp; Tubes logo"></div>
+        <div class="logo-mark"><img width="160" height="160" src="images/logo-160.png" alt="Bharat Metal &amp; Tubes logo"></div>
         <div>
           <span class="logo-text">Bharat <span>Metal</span></span>
           <span class="logo-sub">Stockist &amp; Suppliers &middot; Raipur</span>
@@ -116,6 +121,8 @@
       </div>
     </div>
   </nav>
+
+  <main id="main-content">
   <div class="nav-overlay"></div>
 
   <header class="page-header">
@@ -130,7 +137,7 @@
   <section class="section">
     <div class="container">
       <div class="pd-grid" style="align-items:center;">
-        <img class="reveal" src="images/shope2.jpg" alt="Bharat Metal & Tubes stockyard, Raipur">
+        <img width="547" height="365" class="reveal" src="images/shope2.jpg" alt="Bharat Metal & Tubes stockyard, Raipur">
         <div class="reveal">
           <span class="eyebrow">Who We Are</span>
           <h2 style="margin-top:14px;font-size:32px;">One of the Leading Importers, Stockist &amp; Suppliers of Ferrous &amp; Non-Ferrous Metals</h2>
@@ -205,12 +212,12 @@
           <h2 style="margin-top:14px;font-size:32px;color:var(--white);">Complete Material Solutions Under One Roof</h2>
           <p style="margin-top:16px;color:var(--steel-light);">From stainless steel and carbon steel to non-ferrous metals, IBR boiler items, wear-resistant plates and industrial valves — we stock the full range so you don't have to deal with multiple vendors.</p>
           <div class="timeline" style="margin-top:30px;">
-            <div class="t-item"><span>MANUFACTURING</span><h4 style="color:var(--white);">SS Pipes In-House</h4><p style="color:var(--steel-light);font-size:14px;">Stainless steel pipes manufactured in all grades, shapes and sizes.</p></div>
-            <div class="t-item"><span>IMPORT &amp; STOCK</span><h4 style="color:var(--white);">Ferrous &amp; Non-Ferrous</h4><p style="color:var(--steel-light);font-size:14px;">Direct imports and large ready stock across 40+ grades.</p></div>
-            <div class="t-item"><span>PROJECT SUPPLY</span><h4 style="color:var(--white);">Bulk &amp; Repeat Orders</h4><p style="color:var(--steel-light);font-size:14px;">Project and maintenance supply on repeat-order basis.</p></div>
+            <div class="t-item"><span>MANUFACTURING</span><h3 style="color:var(--white);">SS Pipes In-House</h3><p style="color:var(--steel-light);font-size:14px;">Stainless steel pipes manufactured in all grades, shapes and sizes.</p></div>
+            <div class="t-item"><span>IMPORT &amp; STOCK</span><h3 style="color:var(--white);">Ferrous &amp; Non-Ferrous</h3><p style="color:var(--steel-light);font-size:14px;">Direct imports and large ready stock across 40+ grades.</p></div>
+            <div class="t-item"><span>PROJECT SUPPLY</span><h3 style="color:var(--white);">Bulk &amp; Repeat Orders</h3><p style="color:var(--steel-light);font-size:14px;">Project and maintenance supply on repeat-order basis.</p></div>
           </div>
         </div>
-        <img class="reveal" src="images/Seamless Pipenew.jpg" alt="Seamless pipe stock">
+        <img width="765" height="1024" class="reveal" src="images/Seamless Pipenew.jpg" alt="Seamless pipe stock">
       </div>
     </div>
   </section>
@@ -224,24 +231,24 @@
         <p>Our materials go into process, power, infrastructure and manufacturing plants across India.</p>
       </div>
       <div class="grid grid-4">
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21h20M4 21V11l6 4V11l6 4V7l4 3v11"/><path d="M8 18h1M13 18h1M17 18h1"/></svg></div><h4>Iron &amp; Steel Plant</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12M8 3v6l-3.5 9A1.6 1.6 0 0 0 6 20.5h12a1.6 1.6 0 0 0 1.5-2.5L16 9V3"/></svg></div><h4>Distilleries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V6l7-4v19M10 21V9l8 3v9M2 21h20M6 9h1M6 13h1M6 17h1M13 14h2M13 18h2"/></svg></div><h4>Cement Plant</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8"/></svg></div><h4>Paper Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/></svg></div><h4>Fertilizer Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a1.6 1.6 0 0 0 1.4 2.5h11.2A1.6 1.6 0 0 0 20 18l-5-9V3"/><path d="M8 14h8"/></svg></div><h4>Chemical Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div><h4>Solar Energy</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h12v4a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5z"/><path d="M17 9h2a2 2 0 0 1 0 4h-2"/><path d="M8 3v2M12 3v2"/></svg></div><h4>Beverage Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></div><h4>Oil &amp; Gas Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V8l4-2 4 2M12 21V4l4 2 4-2v17"/><path d="M4 12h8M16 10h4"/></svg></div><h4>Refinery Plant</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="1"/><path d="M7 7h10M7 17h10M10 3v18M14 3v18"/></svg></div><h4>Textile Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="9" width="20" height="6" rx="3"/><path d="M12 9v6"/></svg></div><h4>Pharmacy Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/><path d="M4 6.5l8 4.5 8-4.5M12 11v9"/></svg></div><h4>Sugar Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2h8M9 2v3l-1 3v11a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8l-1-3V2"/><path d="M8 10h8"/></svg></div><h4>Dairy Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2v6M9 2v6M7.5 2v9M7.5 11v11"/><path d="M17 2c-1.7 0-3 2.2-3 5s1.3 4 3 4v9"/></svg></div><h4>Food Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l1.6-4.2A2 2 0 0 1 8.5 6.5h7a2 2 0 0 1 1.9 1.3L19 12"/><path d="M4 12h16v4H4z"/><circle cx="7.5" cy="16" r="1.5"/><circle cx="16.5" cy="16" r="1.5"/></svg></div><h4>Automobile Industries</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></div><h4>Power Plant</h4></div>
-        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a3.5 3.5 0 0 0-4.9 4.9L3 18l3 3 6.6-6.6a3.5 3.5 0 0 0 4.9-4.9l-2.3 2.3-2.5-.6-.6-2.5z"/></svg></div><h4>Engineering &amp; Fabrication</h4></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21h20M4 21V11l6 4V11l6 4V7l4 3v11"/><path d="M8 18h1M13 18h1M17 18h1"/></svg></div><h3>Iron &amp; Steel Plant</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12M8 3v6l-3.5 9A1.6 1.6 0 0 0 6 20.5h12a1.6 1.6 0 0 0 1.5-2.5L16 9V3"/></svg></div><h3>Distilleries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V6l7-4v19M10 21V9l8 3v9M2 21h20M6 9h1M6 13h1M6 17h1M13 14h2M13 18h2"/></svg></div><h3>Cement Plant</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8"/></svg></div><h3>Paper Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6"/></svg></div><h3>Fertilizer Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a1.6 1.6 0 0 0 1.4 2.5h11.2A1.6 1.6 0 0 0 20 18l-5-9V3"/><path d="M8 14h8"/></svg></div><h3>Chemical Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div><h3>Solar Energy</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h12v4a5 5 0 0 1-5 5H10a5 5 0 0 1-5-5z"/><path d="M17 9h2a2 2 0 0 1 0 4h-2"/><path d="M8 3v2M12 3v2"/></svg></div><h3>Beverage Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></div><h3>Oil &amp; Gas Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V8l4-2 4 2M12 21V4l4 2 4-2v17"/><path d="M4 12h8M16 10h4"/></svg></div><h3>Refinery Plant</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="1"/><path d="M7 7h10M7 17h10M10 3v18M14 3v18"/></svg></div><h3>Textile Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="9" width="20" height="6" rx="3"/><path d="M12 9v6"/></svg></div><h3>Pharmacy Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4.5v9L12 20l-8-4.5v-9z"/><path d="M4 6.5l8 4.5 8-4.5M12 11v9"/></svg></div><h3>Sugar Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2h8M9 2v3l-1 3v11a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V8l-1-3V2"/><path d="M8 10h8"/></svg></div><h3>Dairy Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2v6M9 2v6M7.5 2v9M7.5 11v11"/><path d="M17 2c-1.7 0-3 2.2-3 5s1.3 4 3 4v9"/></svg></div><h3>Food Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l1.6-4.2A2 2 0 0 1 8.5 6.5h7a2 2 0 0 1 1.9 1.3L19 12"/><path d="M4 12h16v4H4z"/><circle cx="7.5" cy="16" r="1.5"/><circle cx="16.5" cy="16" r="1.5"/></svg></div><h3>Automobile Industries</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg></div><h3>Power Plant</h3></div>
+        <div class="industry-card reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a3.5 3.5 0 0 0-4.9 4.9L3 18l3 3 6.6-6.6a3.5 3.5 0 0 0 4.9-4.9l-2.3 2.3-2.5-.6-.6-2.5z"/></svg></div><h3>Engineering &amp; Fabrication</h3></div>
       </div>
     </div>
   </section>
@@ -266,12 +273,14 @@
     </div>
   </section>
 
+  </main>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div>
           <a href="index.html" class="logo" style="margin-bottom:18px;display:inline-flex;">
-            <div class="logo-mark"><img src="images/logo.png" alt="Bharat Metal &amp; Tubes logo"></div>
+            <div class="logo-mark"><img width="160" height="160" src="images/logo-160.png" alt="Bharat Metal &amp; Tubes logo"></div>
             <span class="logo-text">Bharat <span>Metal</span></span>
           </a>
           <p>Bharat Metal &amp; Tubes — Raipur (C.G.) based importer, stockist &amp; supplier of stainless steel, carbon steel, mild steel and non-ferrous metals. Pipes, tubes, sheets, plates, flanges, fittings, valves &amp; IBR items.</p>
@@ -280,7 +289,7 @@
           </div>
         </div>
         <div>
-          <h4>Quick Links</h4>
+          <h3>Quick Links</h3>
           <ul>
             <li><a href="about.html">About Us</a></li>
             <li><a href="products.html">Products</a></li>
@@ -291,7 +300,7 @@
           </ul>
         </div>
         <div>
-          <h4>Products</h4>
+          <h3>Products</h3>
           <ul>
             <li><a href="ss-products.html">Stainless Steel</a></li>
             <li><a href="cs-ms-products.html">Carbon &amp; Mild Steel</a></li>
@@ -302,7 +311,7 @@
           </ul>
         </div>
         <div>
-          <h4>Contact Details</h4>
+          <h3>Contact Details</h3>
           <p>Bharat Metal &amp; Tubes,<br>Shop No. A-04, Raipur Machinery Marchant Association Complex, Nr. Vayas Talab, Bhanpuri, Raipur (C.G.)</p>
           <p style="margin-top:10px;">+91 93000 02940 / 90987 25624<br>bharatmetal2013@gmail.com</p>
           <iframe class="map-frame" src="https://www.google.com/maps?q=Bhanpuri%2C+Raipur%2C+Chhattisgarh%2C+India&amp;output=embed" height="150" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Bharat Metal &amp; Tubes location, Bhanpuri, Raipur"></iframe>
