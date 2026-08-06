@@ -215,9 +215,9 @@
       <div class="hero-visual reveal in">
         <div class="hero-slides">
           <div class="hero-slide" style="background-image:url('images/Hero Stockyard-panel.jpg')"></div>
-          <div class="hero-slide" style="background-image:url('images/Hero Warehousenew.jpg')"></div>
-          <div class="hero-slide" style="background-image:url('images/Hero Steel Plantnew.jpg')"></div>
-          <div class="hero-slide" style="background-image:url('images/Hero Pipes Closeupnew.jpg')"></div>
+          <div class="hero-slide" data-bg="images/Hero Warehousenew.jpg"></div>
+          <div class="hero-slide" data-bg="images/Hero Steel Plantnew.jpg"></div>
+          <div class="hero-slide" data-bg="images/Hero Pipes Closeupnew.jpg"></div>
         </div>
         <span class="hero-caption">Bharat Metal &amp; Tubes — Raipur Stockyard</span>
       </div>
@@ -239,7 +239,7 @@
   <section class="section">
     <div class="container">
       <div class="pd-grid" style="align-items:center;">
-        <img width="1000" height="747" fetchpriority="high" class="reveal parallax-img" src="images/shope1new.jpg" alt="Bharat Metal & Tubes stock yard">
+        <img width="1000" height="747" loading="lazy" decoding="async" class="reveal parallax-img" src="images/shope1new.jpg" alt="Bharat Metal & Tubes stock yard">
         <div class="reveal">
           <span class="eyebrow">Who We Are</span>
           <h2 style="margin-top:14px;font-size:32px;">Leading Importers, Stockist &amp; Suppliers of Ferrous &amp; Non-Ferrous Metals</h2>
@@ -484,5 +484,26 @@
     </div>
   </div>
   <script src="js/script.js?v=11"></script>
+
+  <script>
+  /* Hero slides 2-4 are not visible until 1.5s in. Fetch them just after
+     first paint so they never compete with the LCP image. */
+  (function () {
+    function loadRest() {
+      var slides = document.querySelectorAll('.hero-slide[data-bg]');
+      for (var i = 0; i < slides.length; i++) {
+        (function (el) {
+          var url = el.getAttribute('data-bg');
+          var pre = new Image();
+          pre.onload = function () { el.style.backgroundImage = "url('" + url + "')"; };
+          pre.src = url;
+        })(slides[i]);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function () { setTimeout(loadRest, 200); });
+    } else { setTimeout(loadRest, 200); }
+  })();
+  </script>
 </body>
 </html>
