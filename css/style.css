@@ -33,7 +33,13 @@ body{
   line-height:1.65;
   overflow-x:hidden;
 }
-img{max-width:100%;display:block;}
+/* height:auto is required, not optional: every <img> carries intrinsic
+   width/height attributes so the browser can reserve space before the file
+   arrives. Without this, max-width:100% shrinks the width on small screens
+   while the height attribute stays fixed, and the picture stretches.
+   Components that deliberately set their own height (.card-img, .gallery-grid,
+   .mini-gallery) still override it further down. */
+img{max-width:100%;height:auto;display:block;}
 a{text-decoration:none;color:inherit;}
 ul{list-style:none;}
 .container{max-width:var(--container);margin:0 auto;padding:0 24px;}
