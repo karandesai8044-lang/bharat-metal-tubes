@@ -1,0 +1,5 @@
+# The developer credit page used to be served from this site as /karan.html.
+# It now lives at its own address, so send that path there permanently — old
+# links and bookmarks keep working, and a 301 passes the ranking signal on to
+# the portfolio instead of leaving a duplicate copy on a client domain.
+/karan.html   https://karandesai8044-lang.github.io/   301!
